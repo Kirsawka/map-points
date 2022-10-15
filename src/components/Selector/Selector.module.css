@@ -1,0 +1,12 @@
+.select {
+    width: 250px;
+    display: block;
+    margin: 15px 0;
+}
+
+@media screen and (orientation:landscape) {
+    .select {
+        display: inline;
+        margin: 0 15px 15px 0;
+    }
+}

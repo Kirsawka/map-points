@@ -1,0 +1,34 @@
+.aside {
+    width: 400px;
+    border: 1px solid gray;
+    padding: 15px;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+}
+
+.subtitle {
+    margin: 0;
+}
+
+.button {
+    display: block;
+}
+
+@media screen and (max-width: 768px){
+    .aside {
+        width: 100%;
+        /*height: 230px;*/
+        height: auto;
+    }
+}
+
+@media screen and (orientation:landscape) {
+    .aside {
+        /*height: 180px;*/
+        /*padding: 10px;*/
+    }
+}
+
