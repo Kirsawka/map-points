@@ -1,26 +1,25 @@
-import MyMap from './components/MyMap/MyMap';
+import YandexMap from './components/YandexMap/YandexMap';
 import SideBar from './components/SideBar/SideBar';
 import {useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {setShowSideBar, setShowPlacemarks} from './store/reducers/settings';
+import {addAddress} from './store/reducers/address';
 import './App.css';
 
 const API_URL = 'https://run.mocky.io/v3/6102c1b2-254f-4b7c-addb-67d4df752866';
 
 function App() {
 
-  const [showSideBar, setShowSideBar] = useState(false);
-  const [showPlacemarks, setShowPlacemarks] = useState(true);
-
-  const [isLoading, setIsLoading] = useState(true);
+  const settings = useSelector((state) => state.settings.value);
+  const allAddress = useSelector((state) => state.address.value);
+  const dispatch = useDispatch();
 
   const ymaps = useRef(null);
   let placemarkRef = useRef(null);
   const mapRef = useRef(null);
 
   const [address, setAddress] = useState('');
-  const addresses = JSON.parse(localStorage.getItem('addresses')) || [];
-  const [markers, setMarkers] = useState(addresses);
   const [coordinates, setCoordinates] = useState([]);
-
   const [titles, setTitles] = useState([]);
   const [title, setTitle] = useState('');
   const [descriptions, setDescriptions] = useState([]);
@@ -44,16 +43,16 @@ function App() {
   };
 
   const showSideBarHandler = () => {
-    setShowSideBar(true);
-    setShowPlacemarks(false);
+    dispatch(setShowSideBar());
+    dispatch(setShowPlacemarks());
     setAddress('адрес не выбран');
     mapRef.current.geoObjects.remove(placemarkRef.current);
     placemarkRef.current = null;
   };
 
   const hideSideBarHandler = () => {
-    setShowSideBar(false);
-    setShowPlacemarks(true);
+    dispatch(setShowSideBar());
+    dispatch(setShowPlacemarks());
     addMarkers(coordinates.pop(), address, title, description);
   };
 
@@ -64,10 +63,10 @@ function App() {
       title,
       description
     }
-    const copyMarkers = Object.assign([], markers);
-    copyMarkers.push(newPlacemark);
-    setMarkers([...markers, newPlacemark]);
-    localStorage.setItem('addresses', JSON.stringify(copyMarkers));
+    const copyAllAddress = Object.assign([], allAddress);
+    copyAllAddress.push(newPlacemark);
+    dispatch(addAddress(newPlacemark));
+    localStorage.setItem('addresses', JSON.stringify(copyAllAddress));
   };
 
   const saveCoords = (coords) => {
@@ -95,7 +94,7 @@ function App() {
   };
 
   const onMapClick = (e) => {
-    if (showSideBar) {
+    if (settings.showSideBar) {
       const coords = e.get("coords");
       if (placemarkRef.current) {
         placemarkRef.current.geometry.setCoordinates(coords);
@@ -107,26 +106,19 @@ function App() {
     }
   };
 
-  const hideLoaderHandler = () => {
-    setIsLoading(false);
-  }
-
   return (
     <div className="App">
-      {isLoading && <div className="preloader">Загрузка карты ...</div>}
-      <MyMap ymaps={ymaps}
-             onMapClick={onMapClick}
-             mapRef={mapRef}
-             coords={markers}
-             showPlacemark={showPlacemarks}
-             hideLoader={hideLoaderHandler}/>
-      {showSideBar ? <SideBar hideSideBar={hideSideBarHandler}
-                              address={address}
-                              titles={titles}
-                              descriptions={descriptions}
-                              getTitle={getTitleHandler}
-                              getDescription={getDescriptionHandler}/> :
-        !isLoading && <button className='button' onClick={() => showSideBarHandler()}>Добавить адрес</button>}
+      {settings.showLoader && <div className="preloader">Загрузка карты ...</div>}
+      <YandexMap ymaps={ymaps}
+                 onMapClick={onMapClick}
+                 mapRef={mapRef}/>
+      {settings.showSideBar ? <SideBar hideSideBar={hideSideBarHandler}
+                                       address={address}
+                                       titles={titles}
+                                       descriptions={descriptions}
+                                       getTitle={getTitleHandler}
+                                       getDescription={getDescriptionHandler}/> :
+        !settings.showLoader && <button className='button' onClick={() => showSideBarHandler()}>Добавить адрес</button>}
     </div>
   );
 }
