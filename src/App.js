@@ -1,7 +1,8 @@
-import YandexMap from './components/YandexMap/YandexMap';
-import SideBar from './components/SideBar/SideBar';
 import {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import YandexMap from './components/YandexMap/YandexMap';
+import SideBar from './components/SideBar/SideBar';
+import CircularStatic from './components/CircularStatic/CircularStatic';
 import {setShowSideBar, setShowPlacemarks} from './store/reducers/settings';
 import {addAddress} from './store/reducers/address';
 import './App.css';
@@ -111,7 +112,7 @@ function App() {
 
   return (
     <div className="App">
-      {settings.showLoader && <div className="preloader">Загрузка карты ...</div>}
+      {settings.showLoader && <CircularStatic/>}
       <YandexMap ymaps={ymaps}
                  onMapClick={onMapClick}
                  mapRef={mapRef}/>

@@ -34,7 +34,7 @@ function YandexMap({ymaps, onMapClick, mapRef}) {
             draggable: false
           }}/>)}
 
-        {allAddress.length > 0 ? '' : <h1 className={styles.title}>Пусто</h1>}
+        {allAddress.length === 0 && <h1 className={styles.title}>Пусто</h1>}
       </Map>
     </YMaps>
   )
