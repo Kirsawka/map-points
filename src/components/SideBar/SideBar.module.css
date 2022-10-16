@@ -20,15 +20,7 @@
 @media screen and (max-width: 768px){
     .aside {
         width: 100%;
-        /*height: 230px;*/
         height: auto;
-    }
-}
-
-@media screen and (orientation:landscape) {
-    .aside {
-        /*height: 180px;*/
-        /*padding: 10px;*/
     }
 }
 

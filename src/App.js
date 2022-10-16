@@ -51,9 +51,11 @@ function App() {
   };
 
   const hideSideBarHandler = () => {
-    dispatch(setShowSideBar());
-    dispatch(setShowPlacemarks());
-    addMarkers(coordinates.pop(), address, title, description);
+    if (address !== 'адрес не выбран' && title && description) {
+      dispatch(setShowSideBar());
+      dispatch(setShowPlacemarks());
+      addMarkers(coordinates.pop(), address, title, description);
+    }
   };
 
   const addMarkers = (marker, address, title, description) => {
@@ -89,6 +91,7 @@ function App() {
       {
         preset: "islands#circleDotIcon",
         draggable: false,
+        iconColor: 'red'
       }
     );
   };
