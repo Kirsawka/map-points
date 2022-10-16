@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+## Установка
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Клонируйте репозиторий и установите зависимости:
 
-## Available Scripts
+    `npm install`
 
-In the project directory, you can run:
+    `yarn install`
 
-### `npm start`
+2. Запустите приложение локально:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    `npm start`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    `yarn start`
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Состояния приложения:
 
-### `npm run build`
+### 1. Прелоадер
+Прелоадер показывает прогресс загрузки карты в процентном виде - выполнено с помощью библиотеки Material UI.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. Карта с адресами
+Реализовано с использованием API Яндекс Карт, библиотека '@pbe/react-yandex-maps'.
+При отсутствии адресов об этом выводится информация.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+При наличии адресов выводятся метки с балунами, при нажатии на которые выводится заголовок и описание, добавленные при создании адреса.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Описание максимум в 2 строки. При превышении 2 строк текст обрезается с многоточием в конце.
 
-### `npm run eject`
+На карте есть кнопка `добавить адрес`, при нажатии на которую открывается сайдбар.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Сайдбар
+Добавление адреса осуществляется с помощью формы в сайдбаре.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+При открытом сайдбаре кнопка `добавить адрес` и метки сохранённых адресов скрываются.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+В сайдбаре присутствуют:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Заголовок
+2. Подзаголовок с выбранным адресом
+3. Селекторы с опциями полученными в JSON
+4. Кнопка создания адреса
 
-## Learn More
+Выбор адреса осуществляется посредством выбора места на карте.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Выбор адреса и селекторы являются обязательными.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+При сохранении адреса сайдбар закрывается.
 
-### Code Splitting
+----
+Добавленные адреса сохраняются после перезагрузки страницы.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
