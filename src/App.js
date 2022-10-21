@@ -52,7 +52,7 @@ function App() {
   };
 
   const hideSideBarHandler = () => {
-    if (address !== 'адрес не выбран' && title && description) {
+    if (address !== 'адрес не выбран' && title && title !== 'Заголовок' && description && description !== 'Описание') {
       dispatch(setShowSideBar());
       dispatch(setShowPlacemarks());
       addMarkers(coordinates.pop(), address, title, description);
