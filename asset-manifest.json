@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Kirsawka/map-points/static/css/main.a3f91998.css",
+    "main.js": "/Kirsawka/map-points/static/js/main.751529b4.js",
+    "index.html": "/Kirsawka/map-points/index.html",
+    "main.a3f91998.css.map": "/Kirsawka/map-points/static/css/main.a3f91998.css.map",
+    "main.751529b4.js.map": "/Kirsawka/map-points/static/js/main.751529b4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3f91998.css",
+    "static/js/main.751529b4.js"
+  ]
+}
