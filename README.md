@@ -4,13 +4,9 @@
 
     `npm install`
 
-    `yarn install`
-
 2. Запустите приложение локально:
 
     `npm start`
-
-    `yarn start`
 
 
 ## Состояния приложения:
